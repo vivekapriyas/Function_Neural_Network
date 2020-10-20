@@ -1,6 +1,6 @@
 import numpy as np
 
-def writeParams(W_k, b_k, omega, my, ypsilon, filename):
+def writeParams(W_k, b_k, omega, my, ypsilon, J, filename):
     try:
         file = open(filename, 'x')
     except FileExistsError:
@@ -30,12 +30,17 @@ def writeParams(W_k, b_k, omega, my, ypsilon, filename):
     for y in ypsilon:
         ypsilon_str += str(y[0]) + ','
     ypsilon_str += '\n'
+    
+    J_str = ""
+    for j in J:
+        J_str += str(j) + ','
+    J_str += '\n'
 
     file.write(Wk_str + bk_str + omega_str + my_str+ypsilon_str)
     file.close()
 
 
-def readParams(K, d, I, filename):
+def readParams(K, d, I, N, filename):
     try:
         file = open(filename, 'r')
     except FileExistsError:
@@ -46,6 +51,7 @@ def readParams(K, d, I, filename):
     omega = np.zeros(d)
     my = np.zeros(1)
     ypsilon = np.zeros((I,1))
+    J = np.zeros(N)
     
 
     W = file.readline().split(',')
@@ -53,6 +59,7 @@ def readParams(K, d, I, filename):
     O = file.readline().split(',')
     M = file.readline()
     Y = file.readline().split(',')
+    Jl = file.readline().split(',')
 
     file.close()
 
@@ -77,5 +84,8 @@ def readParams(K, d, I, filename):
     
     for y in range(I):
         ypsilon[y][0] = float(Y[y])
+    
+    for j in range(N):
+        J[j] = float(Jl[j])
 
     return w_k, b_k, omega, my, ypsilon
