@@ -88,4 +88,4 @@ def readParams(K, d, I, N, filename):
     for j in range(N):
         J[j] = float(Jl[j])
 
-    return w_k, b_k, omega, my, ypsilon
+    return w_k, b_k, omega, my, ypsilon, J
