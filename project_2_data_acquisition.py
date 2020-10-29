@@ -54,7 +54,7 @@ def concatenate(batchmin=0, batchmax=50):
     T0 = dictlist[0]["T"]
     V0 = dictlist[0]["V"]
     tlist = dictlist[0]["t"]
-    for j in range(batchmax-1):
+    for j in range(batchmax-1-batchmin):
         Q_data = np.hstack((Q_data, dictlist[j+1]["Q"]))
         P_data = np.hstack((P_data, dictlist[j+1]["P"]))
         T0 = np.hstack((T0, dictlist[j+1]["T"]))

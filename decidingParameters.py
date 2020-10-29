@@ -23,31 +23,39 @@ def plotParams(parameter_list, parametername):
     for i in range(len(parameter_list)):
         parameter = parameter_list[i]
         if parametername == "batch":
+            fig.suptitle('J vs. iterations for different batchsizes for stochastic gradient descent', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Abatch, itr_A0 = readParams(K, d_0, parameter, N, filename = "trainingParams_Abatch{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Abatch/parameter, label = r"$batchsize ={}$".format(parameter))
             
             
         elif parametername == "K":
+            fig.suptitle('J vs. iterations for different values of hidden layers K', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_AK, itr_A0 = readParams(parameter, d_0, batchsize, N, filename = "trainingParams_AK_{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_AK/batchsize, label = r"$K ={}$".format(parameter))
         
         elif parametername == "tau":
+            fig.suptitle(r'J vs. iterations for different values of the learning parameter \tau', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Atau, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Atau_{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Atau/batchsize, label = r"$\tau =%.4f$"%parameter)
             
         elif parametername == "d":
+            fig.suptitle('J vs. iterations for different dimensions d', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ad, itr_A0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Ad_{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ad/batchsize, label = r"$d ={}$".format(parameter))
             
         elif parametername == "h":
+            fig.suptitle('J vs. iterations for different values the stepsize h', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ah, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ah1_{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ah/batchsize, label = r"$h ={}$".format(parameter))
         
         else:
             print("The parametername must be either \"batch\", \"K\", \"tau\", \"d\" or \"h\"")
         
-    ax.set_title("Adam")
+    ax.set_title("Adam descent")
     ax.set_yscale("log")
+    ax.set_ylabel("Loss function, J")
+    ax.set_xlabel("Iterations, N")
+                  
     ax.legend()
     
     
@@ -79,8 +87,10 @@ def plotParams(parameter_list, parametername):
         else:
             print("The parametername must be either \"batch\", \"K\", \"tau\", \"d\" or \"h\"")
               
-    ax.set_title(r"Plain")
+    ax.set_title(r"Plain vanilla gradient descent")
     ax.set_yscale("log")
+    ax.set_ylabel("Loss function, J")
+    ax.set_xlabel("Iterations, N")
     ax.legend()
 
     plt.show()
