@@ -4,7 +4,7 @@ def writeParams(W_k, b_k, omega, my, ypsilon, J, itr, filename):
     try:
         file = open('parameters/'+filename, 'x')
     except FileExistsError:
-        file = open(filename, 'w')
+        file = open('parameters/'+filename, 'w')
 
     Wk_str = ""
     for W in W_k:
@@ -98,7 +98,7 @@ def writeScale(aV,bV, aT, bT, filename):
     try:
         file = open('parameters/'+filename, 'x')
     except FileExistsError:
-        file = open(filename, 'w')
+        file = open('parameters/'+filename, 'w')
     
     file.write(str(aV)+'\n'+str(bV)+'\n'+str(aT)+'\n'+str(bT))
     file.close()
