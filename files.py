@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def writeParams(W_k, b_k, omega, my, ypsilon, J, itr, filename):
     try:
@@ -116,3 +117,11 @@ def readScale(filename):
     bT = float(file.readline())
     
     return aV, bV, aT, bT
+
+def plotObjFnc(J, itr, batchsize, fnc_string):
+    plt.plot(np.linspace(0,itr,itr), J[:itr]/batchsize)
+    plt.title(r"The objective function for {}".format(fnc_string))
+    plt.yscale('log')
+    plt.xlabel('Iterations, N')
+    plt.ylabel('Objective function, J')
+    plt.show()
