@@ -2,7 +2,7 @@ import numpy as np
 
 def writeParams(W_k, b_k, omega, my, ypsilon, J, itr, filename):
     try:
-        file = open(filename, 'x')
+        file = open('parameters/'+filename, 'x')
     except FileExistsError:
         file = open(filename, 'w')
 
@@ -44,7 +44,7 @@ def writeParams(W_k, b_k, omega, my, ypsilon, J, itr, filename):
 
 def readParams(K, d, I, N, filename):
     try:
-        file = open(filename, 'r')
+        file = open('parameters/'+filename, 'r')
     except FileExistsError:
         print("Kunne ikke finne", filename)
 
@@ -87,9 +87,32 @@ def readParams(K, d, I, N, filename):
     
     for y in range(I):
         ypsilon[y][0] = float(Y[y])
+
     
     for j in range(N):
         J[j] = float(Jl[j])
 
     return w_k, b_k, omega, my, ypsilon, J, int(itr)
-                                               
+
+def writeScale(aV,bV, aT, bT, filename):
+    try:
+        file = open('parameters/'+filename, 'x')
+    except FileExistsError:
+        file = open(filename, 'w')
+    
+    file.write(str(aV)+'\n'+str(bV)+'\n'+str(aT)+'\n'+str(bT))
+    file.close()
+
+    
+def readScale(filename):
+    try:
+        file = open('parameters/'+filename, 'r')
+    except FileExistsError:
+        print("could not find file", filename)
+    
+    aV = float(file.readline())
+    bV = float(file.readline())
+    aT = float(file.readline())
+    bT = float(file.readline())
+    
+    return aV, bV, aT, bT
