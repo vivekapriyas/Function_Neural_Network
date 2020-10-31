@@ -13,7 +13,7 @@ def filenameList(parameter_list, parameter):
         filenames_P.append('trainingParams_P{}{}'.format(parameter, num))
     return filenames_A, filenames_P
 
-def plotParams(parameter_list, parametername):
+def plotParams(parameter_list, parametername, K = None, d = None, batchsize = None, N=5000):
     fig, axs = plt.subplots(1, 2, sharey = True)
     fig.set_figheight(7)
     fig.set_figwidth(10)
@@ -30,22 +30,22 @@ def plotParams(parameter_list, parametername):
             
         elif parametername == "K":
             fig.suptitle('J vs. iterations for different values of hidden layers K', fontsize=12)
-            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_AK, itr_A0 = readParams(parameter, d_0, batchsize, N, filename = "trainingParams_AK_{}".format(parameter))
+            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_AK, itr_A0 = readParams(parameter, d_0, batchsize, N, filename = "trainingParams_AK{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_AK/batchsize, label = r"$K ={}$".format(parameter))
         
         elif parametername == "tau":
-            fig.suptitle(r'J vs. iterations for different values of the learning parameter \tau', fontsize=12)
-            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Atau, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Atau_{}".format(parameter))
+            #fig.suptitle(r'J vs. iterations for different values of the learning parameter \tau', fontsize=12)
+            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Atau, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Atau{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Atau/batchsize, label = r"$\tau =%.4f$"%parameter)
             
         elif parametername == "d":
             fig.suptitle('J vs. iterations for different dimensions d', fontsize=12)
-            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ad, itr_A0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Ad_{}".format(parameter))
+            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ad, itr_A0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Ad{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ad/batchsize, label = r"$d ={}$".format(parameter))
             
         elif parametername == "h":
             fig.suptitle('J vs. iterations for different values the stepsize h', fontsize=12)
-            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ah, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ah1_{}".format(parameter))
+            W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Ah, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ah{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ah/batchsize, label = r"$h ={}$".format(parameter))
         
         else:
@@ -69,19 +69,19 @@ def plotParams(parameter_list, parametername):
             ax.plot(np.linspace(0,N,N), J_Pbatch/parameter, label = r"$batchsize ={}$".format(parameter))
         
         elif parametername == "K":
-            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_PK, itr_P0 = readParams(parameter, d_0, batchsize, N, filename = "trainingParams_PK_{}".format(parameter))
+            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_PK, itr_P0 = readParams(parameter, d_0, batchsize, N, filename = "trainingParams_PK{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_PK/batchsize, label = r"$K ={}$".format(parameter))
             
         elif parametername == "tau":
-            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Ptau, itr_P0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ptau_{}".format(parameter))
+            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Ptau, itr_P0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ptau{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ptau/batchsize, label = r"$\tau =%.4f$"%parameter)
     
         elif parametername == "d":
-            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Pd, itr_P0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Pd_{}".format(parameter))
+            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Pd, itr_P0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Pd{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Pd/batchsize, label = r"$d ={}$".format(parameter))
             
         elif parametername == "h":
-            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Ph1, itr_P0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ph1_{}".format(parameter))
+            W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Ph1, itr_P0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ph{}".format(parameter))
             ax.plot(np.linspace(0,N,N), J_Ph1/batchsize, label = r"$h ={}$".format(parameter))
             
         else:
