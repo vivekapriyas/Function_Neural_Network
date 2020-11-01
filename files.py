@@ -123,5 +123,5 @@ def plotObjFnc(J, itr, batchsize, fnc_string):
     plt.title(r"The objective function for {}".format(fnc_string))
     plt.yscale('log')
     plt.xlabel('Iterations, N')
-    plt.ylabel('Objective function, J')
+    plt.ylabel('J / batchsize')
     plt.show()
