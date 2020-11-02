@@ -36,7 +36,7 @@ def plotParams(parameter_list, parametername, K = None, d = None, batchsize = No
         elif parametername == "tau":
             #fig.suptitle(r'J vs. iterations for different values of the learning parameter \tau', fontsize=12)
             W_A0, b_A0, omega_A0, mu_A0, ypsilon_A0, J_Atau, itr_A0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Atau{}".format(parameter))
-            ax.plot(np.linspace(0,N,N), J_Atau/batchsize, label = r"$\tau =%.4f$"%parameter)
+            ax.plot(np.linspace(0,N,N), J_Atau/batchsize, label = r"$\tau =%.3f$"%parameter)
             
         elif parametername == "d":
             fig.suptitle('J vs. iterations for different dimensions d', fontsize=12)
@@ -53,7 +53,7 @@ def plotParams(parameter_list, parametername, K = None, d = None, batchsize = No
         
     ax.set_title("Adam descent")
     ax.set_yscale("log")
-    ax.set_ylabel("Loss function, J")
+    ax.set_ylabel("J / batchsize")
     ax.set_xlabel("Iterations, N")
                   
     ax.legend()
@@ -74,7 +74,7 @@ def plotParams(parameter_list, parametername, K = None, d = None, batchsize = No
             
         elif parametername == "tau":
             W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Ptau, itr_P0 = readParams(K, d_0, batchsize, N, filename = "trainingParams_Ptau{}".format(parameter))
-            ax.plot(np.linspace(0,N,N), J_Ptau/batchsize, label = r"$\tau =%.4f$"%parameter)
+            ax.plot(np.linspace(0,N,N), J_Ptau/batchsize, label = r"$\tau =%.3f$"%parameter)
     
         elif parametername == "d":
             W_P0, b_P0, omega_P0, mu_P0, ypsilon_P0, J_Pd, itr_P0 = readParams(K, parameter, batchsize, N, filename = "trainingParams_Pd{}".format(parameter))
@@ -89,7 +89,7 @@ def plotParams(parameter_list, parametername, K = None, d = None, batchsize = No
               
     ax.set_title(r"Plain vanilla gradient descent")
     ax.set_yscale("log")
-    ax.set_ylabel("Loss function, J")
+    ax.set_ylabel("J / batchsize ")
     ax.set_xlabel("Iterations, N")
     ax.legend()
 
