@@ -125,3 +125,24 @@ def plotObjFnc(J, itr, batchsize, fnc_string):
     plt.xlabel('Iterations, N')
     plt.ylabel('J / batchsize')
     plt.show()
+
+def plotTrajectories(t, eulerV, eulerT, stroverV, stroverT, fnc_string):
+    fig, axs = plt.subplots(1, 2)
+    fig.set_figheight(4)
+    fig.set_figwidth(19)
+
+    ax = axs[0]
+    ax.plot(t,eulerV+eulerT)
+    ax.set_title("Sympletic Euler")
+    ax.set_xlabel("Trajectories, t")
+    ax.set_ylabel("Hamiltonian, H")
+
+    ax = axs[1]
+    ax.plot(t,stroverV+stroverT)
+    ax.set_title("Strømer Verlet")
+    ax.set_xlabel("Trajectories, t")
+    ax.set_ylabel("Hamiltonian, H")
+
+    fig.suptitle("The Hamiltonian along the trajectories for the {}".format(fnc_string))
+
+    plt.show()
